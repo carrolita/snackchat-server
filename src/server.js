@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost/snackchat')
+mongoose.connect(process.env.MONGODB_URI + '/snackchat')
   .then(() => console.log('Connected to mongo server'))
   .catch(() => {
     console.error('Failed to connect to mongo server');
