@@ -6,10 +6,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-mongoose.connect(process.env.MONGODB_URI + '/snackchat')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to mongo server'))
   .catch(() => {
-    console.error('Failed to connect to mongo server');
+    console.error('Failed to connect to mongo server at: ' + process.env.MONGODB_URI);
     process.exit(1);
   });
 
@@ -179,7 +179,8 @@ app.post('/rooms/:id/messages', (req, res) => {
     });
 });
 
+const port = process.env.PORT || 4000;
 
-server.listen(4000, () => {
-  console.log('listening on *:4000');
+server.listen(port, () => {
+  console.log(port);
 });
